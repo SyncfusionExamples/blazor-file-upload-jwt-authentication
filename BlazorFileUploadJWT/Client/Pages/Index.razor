@@ -1,0 +1,25 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Inputs
+
+<PageTitle>File Uplaod JWT</PageTitle>
+
+<SfUploader ID="UploadFiles">
+    <UploaderEvents FileSelected="onFileSelect" BeforeRemove="onRemove"></UploaderEvents>
+    <UploaderAsyncSettings SaveUrl="api/FileAction/Save" RemoveUrl="api/FileAction/Remove">
+    </UploaderAsyncSettings>
+</SfUploader>
+
+@code {
+
+    private void onFileSelect(SelectedEventArgs args)
+    {
+        args.CurrentRequest = new List<object> { new { Authorization = "test123" } };
+    }
+
+    private void onRemove(BeforeRemoveEventArgs args)
+    {
+        args.CurrentRequest = new List<object> { new { Authorization = "test123" } };
+    }
+
+}
